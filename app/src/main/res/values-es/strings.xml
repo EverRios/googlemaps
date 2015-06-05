@@ -1,6 +1,5 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
-
     <string name="app_name">Google Maps</string>
     <string name="hello_world">Hello world!</string>
     <string name="action_settings">Terreno</string>
@@ -14,6 +13,4 @@
     <string name="ter3">Satelite</string>
     <string name="ter4">Normal</string>
     <string name="ter5">None</string>
-
-
 </resources>

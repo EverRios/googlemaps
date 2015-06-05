@@ -1,0 +1,16 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string name="app_name">Google Maps</string>
+    <string name="hello_world">Hello world!</string>
+    <string name="action_settings">Ground</string>
+
+    <string name="Mi_Casa">My Home</string>
+    <string name="Mi_Posición">My Position</string>
+    <string name="Marcador">Marker</string>
+
+    <string name="ter1">Ground</string>
+    <string name="ter2">Hybrid</string>
+    <string name="ter3">Satellite</string>
+    <string name="ter4">Normal</string>
+    <string name="ter5">None</string>
+</resources>

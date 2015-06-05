@@ -20,8 +20,11 @@ import com.google.android.gms.maps.model.MarkerOptions;
 
 
 
+
+
 public class MainActivity extends FragmentActivity implements GoogleMap.OnMapClickListener {
-    private final LatLng CASA = new LatLng(18.243616428226233, -100.55866884067655);
+    // SE DECLARAN VARIABLES
+    private final LatLng CASA = new LatLng(18.244183673523366, -100.558668124589324);
     private  GoogleMap mapa;
 
 
@@ -30,31 +33,42 @@ public class MainActivity extends FragmentActivity implements GoogleMap.OnMapCli
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
 
+        //SE ENLAZA EL MAPFRAGMENT
         mapa = ((SupportMapFragment) getSupportFragmentManager()
                 .findFragmentById(R.id.map)).getMap();
         mapa.setMapType(GoogleMap.MAP_TYPE_SATELLITE);
         mapa.moveCamera(CameraUpdateFactory.newLatLngZoom(CASA, 15));
+
+        // SE ABILITAN LOS CONTROLES.
         mapa.setMyLocationEnabled(true);
-        mapa.getUiSettings().setZoomControlsEnabled(false);
+        mapa.getUiSettings().setZoomControlsEnabled(true);
+        mapa.getUiSettings().setMyLocationButtonEnabled(true);
         mapa.getUiSettings().setCompassEnabled(true);
+        mapa.getUiSettings().setRotateGesturesEnabled(true);
+        mapa.getUiSettings().setZoomGesturesEnabled(true);
+
+        /// MUESTRA UN TIUTLO CUANDO SE DA UN TOQUE EN LAS CORDENADAS ESTABLECIDAS
         mapa.addMarker(new MarkerOptions()
                 .position(CASA)
                 .title("Mi Casita")
-                .snippet("Cuatodio Hernandez S/N. Col. El Recodo")
+                .snippet("Mariano Matamoros S/N. Col. El Recodo")
                 .icon(BitmapDescriptorFactory
                         .fromResource(android.R.drawable.ic_menu_compass))
                 .anchor(0.5f, 0.5f));
         mapa.setOnMapClickListener(this);
     }
-
+    //MANDA A LA POSICION DE LA CORDENADAS ESTABLECIDAS
     public void moveCamera(View view) {
         mapa.moveCamera(CameraUpdateFactory.newLatLng(CASA));
     }
+
+    //METODO QUE MUESTRA LA POSICION ACTUAL
     public void animateCamera(View view) {
         if (mapa.getMyLocation() != null)
             mapa.animateCamera(CameraUpdateFactory.newLatLngZoom(
                     new LatLng( mapa.getMyLocation().getLatitude(), mapa.getMyLocation().getLongitude()), 15));
     }
+    //COLOCA EL MARCADOR DONDE SE LE INDICA EN EL MAPA CUANDO SE PRESIONA EL BOTON MARCADOR
     public void addMarker(View view) {
         mapa.addMarker(new MarkerOptions().position(
                 new LatLng(mapa.getCameraPosition().target.latitude,
@@ -67,7 +81,7 @@ public class MainActivity extends FragmentActivity implements GoogleMap.OnMapCli
         getMenuInflater().inflate(R.menu.menu_main, menu);
         return true;
     }
-
+    //METODO PARA DARLE FUNCIONALIDAD A LOS MENUS
     @Override
     public boolean onOptionsItemSelected(MenuItem item) {
         // Handle action bar item clicks here. The action bar will
@@ -100,7 +114,7 @@ public class MainActivity extends FragmentActivity implements GoogleMap.OnMapCli
 
         return super.onOptionsItemSelected(item);
     }
-//Se creo el metodo
+    //METODO PARA CREAR UN MARCADOR CUANDO SE TOCA UN LUGAR EN EL MAPA...
     @Override
     public void onMapClick(LatLng puntoPulsado) {
         mapa.addMarker(new MarkerOptions().position(puntoPulsado).
